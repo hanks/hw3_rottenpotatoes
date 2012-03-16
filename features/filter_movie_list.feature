@@ -44,11 +44,7 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
 
 Scenario: no ratings selected
   # see assignment
-  When I uncheck "ratings_PG"
-  And I uncheck "ratings_R"
-  And I uncheck "ratings_PG-13"
-  And I uncheck "ratings_G"
-  And I uncheck "ratings_NC-17"
+  When I uncheck the following ratings: PG-13,G,NC-17,PG,R
   Then I press "ratings_submit"
   And I should not see "The Terminator"
   And I should not see "When Harry Met Sally"
@@ -63,19 +59,6 @@ Scenario: no ratings selected
 
 Scenario: all ratings selected
   # see assignment
-When I check "ratings_PG"
-  And I check "ratings_R"
-  And I check "ratings_PG-13"
-  And I check "ratings_G"
-  And I check "ratings_NC-17"
-  Then I press "ratings_submit"
-  And I should see "The Terminator"
-  And I should see "When Harry Met Sally"
-  And I should see "Amelie"
-  And I should see "The Incredibles"
-  But I should see "Raiders of the Lost Ark"
-  And I should see "Aladdin"
-  And I should see "The Help"
-  And I should see "Chocolat"
-  And I should see "2001: A Space Odyssey"
-  And I should see "Chicken Run"
+  When I check the following ratings: PG-13,G,NC-17,PG,R
+  Then I press "Refresh"
+  Then I should see all of the movies
