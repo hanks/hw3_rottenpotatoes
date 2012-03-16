@@ -3,7 +3,11 @@
 Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
+    # you should arrange to add that movie to the database here. 
+    # cucumber can transfor table in the feature file to Table type 
+    # automatically, and then we should use the ActiveRecord to store
+    # the movie objects to the database
+    Movie.create!(movie)  
   end
   #assert false, "Unimplmemented"
 end
