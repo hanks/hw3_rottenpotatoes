@@ -24,7 +24,11 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
 end
 
 Then /^I should see all of the movies$/ do
-  page.should have_css("table#movies tbody tr", :count => @total)
+  if page.respond_to? :should
+    page.should have_css("table#movies tbody tr", :count => @total)
+  else
+    assert page.have_css?("table#movies tbody tr", :count => @total)
+  end
 end
 
 # Make it easier to express checking or unchecking several boxes at once
