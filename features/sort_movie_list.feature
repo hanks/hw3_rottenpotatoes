@@ -30,4 +30,7 @@ Scenario: sort movies alphabetically
   
 Scenario: sort movies in increasing order of release date
   # your steps here
-
+  When I check the following ratings: PG-13,G,NC-17,PG,R
+  And I press "Refresh"
+  Then I follow "Release Date"
+  Then I should see "1984" before "1989"
